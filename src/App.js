@@ -33,13 +33,13 @@ function App() {
         );
         Promise.all(speciesRequests)
           .then(speciesData => setSpecies(speciesData))
-          .catch(error => console.error(error));
+          .catch(error => console.error(error))
+          .finally(() => setIsFetching(false));
       })
       .catch(error => {
         setError(error);
         console.error(error);
-      })
-      .finally(() => setIsFetching(false));
+      });
   }, []);
 
   return (
